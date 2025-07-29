@@ -1,19 +1,18 @@
+"use client"
 import { ChangeEvent, FormEvent, useState } from "react"
-//import { IRegisterData } from "./register.types"
-import { IRegisterData } from "@/app/auth/register/register.types"
+import { IRegisterData } from "./register.types"
 import { registerUser } from "@/lib/store/auth/authSlice"
-//import { useAppSelector } from "@/lib/store/hooks"
-
+import { useAppDispatch, useAppSelector } from "@/lib/store/hook"
 import { Status } from "@/lib/types/type"
-import { useAppSelector } from "@/lib/store/hook"
 
 
 // user le k k type garxa tw input field ma tyo track garera store garne 
 
 
 function Register(){
-  const {institute} = useAppSelector((store)=>store.institute)
-  const {status} = useAppSelector((store)=>store.auth)
+  const dispatch = useAppDispatch()
+  // const {institute} = useAppSelector((store)=>store.institute)
+  // const {status} = useAppSelector((store)=>store.auth)
     const [data,setData] = useState<IRegisterData>({
         username : "", 
         email : "", 
@@ -30,16 +29,18 @@ function Register(){
 
     const handleRegisterSubmission = (e:FormEvent<HTMLFormElement>)=>{
         // api call 
-        registerUser(data)
-        if(status === Status.SUCCESS){
+        e.preventDefault()
+        // @ts-ignore
+        dispatch(registerUser(data))
+        // if(status === Status.SUCCESS){
 
-        }
+        // }
     }
 
  
     return (
       <>
-        <h1>This is register page, will be great soon..</h1>
+       
     <div className="bg-gray-100 flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
   <div className="w-full max-w-md space-y-8">
     <div className="bg-white shadow-md rounded-md p-6">

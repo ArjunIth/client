@@ -1,3 +1,4 @@
+"use client"
 import { ChangeEvent, FormEvent, useState } from "react"
 import { ILoginData } from "./login.types"
 import { loginUser } from "@/lib/store/auth/authSlice"
